@@ -1,9 +1,10 @@
 {
   "name": "instagramclone",
   "version": "1.0.0",
-  "description": "",
+  "description": "Instaclone Backend.",
   "scripts": {
-    "dev": "nodemon --exec babel-node server"
+    "dev": "nodemon --exec babel-node server",
+    "migrate": "npx prisma migrate dev"
   },
   "repository": {
     "type": "git",
@@ -18,13 +19,13 @@
   "dependencies": {
     "@prisma/client": "2.19.0",
     "apollo-server": "^2.22.1",
-    "graphql": "^15.5.0"
+    "graphql": "^15.5.0",
+    "nodemon": "^2.0.7"
   },
   "devDependencies": {
     "@babel/core": "^7.13.13",
     "@babel/node": "^7.13.13",
     "@babel/preset-env": "^7.13.12",
-    "nodemon": "^2.0.7",
     "prisma": "2.19.0"
   }
 }
