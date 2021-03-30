@@ -1,6 +1,5 @@
-import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import client from "../client";
+import client from "../../client";
 
 export default {
   Mutation: {
@@ -28,7 +27,7 @@ export default {
         // hash password
         const uglyPassword = await bcrypt.hash(password, 10);
         // save and return the user
-        return client.user.create({
+        const ok = await client.user.create({
           data: {
             firstName,
             lastName,
@@ -37,35 +36,20 @@ export default {
             password: uglyPassword,
           },
         });
+        
+        if (!ok) {
+          throw new Error("Could not create profile");
+        }
+
+        return {
+          ok: true,
+        };
       } catch (e) {
-        return e;
-      }
-    },
-    login: async (_, { username, password }) => {
-      // find user with atgs.username
-      const user = await client.user.findFirst({
-        where: { username },
-      });
-      if (!user) {
         return {
           ok: false,
-          error: "User not found.",
+          error: e,
         };
       }
-      // check password width args.password
-      const passwordOk = await bcrypt.compare(password, user.password);
-      if (!passwordOk) {
-        return {
-          ok: false,
-          error: "Incorrect password.",
-        };
-      }
-      // issue a token and send it to the user
-      const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY);
-      return {
-        ok: true,
-        token,
-      };
     },
   },
 };
