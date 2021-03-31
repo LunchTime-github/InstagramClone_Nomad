@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/LunchTime-github/InstagramClone_Nomad#readme",
   "dependencies": {
-    "@prisma/client": "^2.19.0",
+    "@prisma/client": "^2.20.0",
     "apollo-server": "^2.22.1",
     "bcrypt": "^5.0.1",
     "dotenv": "^8.2.0",
@@ -32,6 +32,6 @@
     "@babel/core": "^7.13.13",
     "@babel/node": "^7.13.13",
     "@babel/preset-env": "^7.13.12",
-    "prisma": "2.19.0"
+    "prisma": "^2.20.0"
   }
 }
