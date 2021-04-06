@@ -8,11 +8,7 @@ export default {
         let hashtagObj = [];
         if (caption) {
           /// parse caption
-          const hashtags = caption.match(/#[\w]+/g);
-          hashtagObj = hashtags.map((hashtag) => ({
-            where: { hashtag },
-            create: { hashtag },
-          }));
+          hashtagObj = processHashtags(caption);
         }
         // get or create Hashtags
         return client.photo.create({
