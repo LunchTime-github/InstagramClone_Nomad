@@ -18,14 +18,11 @@ Instaclone Backend.
 
 ## Photos
 
-- [ ] Upload Photo (Parse #)
-- [ ] See Photo
-- [ ] Upload Photo
+- [x] Upload Photo (Parse #)
+- [x] See Photo
 - [ ] See Hashtags
 - [ ] Search Photos
 - [ ] Edit Photo
 - [ ] Like / Unlike Photo
 - [ ] See Photo Likes
 - [ ] See Feed
-- [ ] Search Photos
-- [ ] See Hashtags
