@@ -13,6 +13,7 @@ export default gql`
     bio: String
     avatar: String
     photos: [Photo]
+    likes: [Like]
     followers: [User]
     following: [User]
     totalFollowing: Int!
