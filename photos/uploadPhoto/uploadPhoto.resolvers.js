@@ -1,4 +1,5 @@
 import client from "../../client";
+import { uploadToS3 } from "../../shared/shared.utils";
 import { protectedResolver } from "../../users/users.utils";
 import { processHashtags } from "../photos.utils";
 
@@ -11,10 +12,11 @@ export default {
           /// parse caption
           hashtagObj = processHashtags(caption);
         }
+        const fileUrl = await uploadToS3(file, loggedInUser.id, "uploads");
         // get or create Hashtags
         return client.photo.create({
           data: {
-            file,
+            file: fileUrl,
             caption,
             user: {
               connect: {
@@ -28,8 +30,6 @@ export default {
             }),
           },
         });
-        // save the photo With rhe parsed hashtags
-        // and the photo to the hashtags
       }
     ),
   },

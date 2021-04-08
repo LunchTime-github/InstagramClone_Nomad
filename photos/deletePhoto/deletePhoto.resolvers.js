@@ -1,4 +1,5 @@
 import client from "../../client";
+import { deleteInS3 } from "../../shared/shared.utils";
 import { protectedResolver } from "../../users/users.utils";
 
 export default {
@@ -8,6 +9,7 @@ export default {
         where: { id },
         select: {
           userId: true,
+          file: true,
           hashtags: {
             select: {
               id: true,
@@ -60,6 +62,9 @@ export default {
         const likeIds = photo.likes.map((like) => ({ id: like.id }));
         // 찾은 like 삭제
         await client.like.deleteMany({ where: { OR: likeIds } });
+
+        // 서버에 저장되어있는 사진 삭제
+        await deleteInS3(photo.file);
 
         // photo 삭제
         await client.photo.delete({ where: { id } });
