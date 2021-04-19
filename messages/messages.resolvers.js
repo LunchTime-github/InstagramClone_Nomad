@@ -8,7 +8,7 @@ export default {
       if (!loggedInUser) {
         return 0;
       }
-      
+
       return client.message.count({
         where: {
           read: false,
@@ -21,5 +21,8 @@ export default {
         },
       });
     },
+  },
+  Message: {
+    user: ({ id }) => client.message.findUnique({ where: { id } }).user(),
   },
 };
