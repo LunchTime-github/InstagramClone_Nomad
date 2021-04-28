@@ -45,6 +45,7 @@ export default {
           ok: true,
         };
       } catch (e) {
+        console.log("data", e);
         return {
           ok: false,
           error: e,
