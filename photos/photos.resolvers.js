@@ -19,6 +19,25 @@ export default {
       if (!loggedInUser) return false;
       return userId === loggedInUser.id;
     },
+    isLiked: async ({ id }, _, { loggedInUser }) => {
+      if (!loggedInUser) return false;
+      const ok = await client.like.findUnique({
+        where: {
+          photoId_userId: {
+            photoId: id,
+            userId: loggedInUser.id,
+          },
+        },
+        select: {
+          id: true,
+        },
+      });
+      if (ok) {
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
   Hashtag: {
     photos: ({ id }, { page }) => {

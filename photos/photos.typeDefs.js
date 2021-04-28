@@ -10,6 +10,7 @@ export default gql`
     totalLike: Int!
     totalComment: Int!
     isMine: Boolean!
+    isLiked: Boolean!
     createdAt: String!
     updatedAt: String!
   }
