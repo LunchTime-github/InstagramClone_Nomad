@@ -9,6 +9,7 @@ export default gql`
     hashtags: [Hashtag]
     totalLike: Int!
     totalComment: Int!
+    comments: [Comment]
     isMine: Boolean!
     isLiked: Boolean!
     createdAt: String!
